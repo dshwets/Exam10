@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}User page{% endblock %}
+
+{% block content %}
+    <div class='block1'>
+            {% if is_paginated %}
+                {% include 'partial/pagination.html' %}
+            {% endif %}
+            {% for user in users %}
+                <div class="box">
+                    {% if user.profile.avatar %}
+                        <img class="avatar" src="{{ user.profile.avatar.url }}" width="250" height="250" alt="user picture">
+                    {% else %}
+                        <img class="avatar" src="https://i.pinimg.com/originals/e1/3a/73/e13a7327597bc51017d7f84dccda2d47.jpg" width="250" height="250" alt="user picture">
+                    {% endif %}
+                    <h3 style="box-sizing: border-box; display: inline-block"><a href="{% url "accounts:detail" user.pk %}">{{ user.first_name }} {{ user.last_name }}</a></h3>
+
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'api:add_to_friends' pk=user.pk%}"><button type="button" class="btn btn-primary">
+                        Add to Friends</button></a>
+                    {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'webapp:send_message' pk=user.pk%}"><button type="button" class="btn btn-secondary">
+                            Send Message</button></a>
+                        {% endif %}
+                </div>
+            {% endfor %}
+         {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+<script type="application/javascript" src="{% static "js/main.js" %}"></script>
+
+{% endblock %}

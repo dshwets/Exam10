@@ -11,7 +11,7 @@ class Messages(models.Model):
     message_text = models.TextField(max_length=400, verbose_name='Текст сообщения')
 
     def __str__(self):
-        return self.sender.username + "'s message"
+        return str(self.pk) + "'s message"
 
     class Meta:
         verbose_name = 'Профиль'

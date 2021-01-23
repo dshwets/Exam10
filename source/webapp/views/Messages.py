@@ -35,5 +35,5 @@ class SendedMessages(LoginRequiredMixin, ListView):
     paginate_orphans = 4
 
     def get_queryset(self):
-        current_query = super().get_queryset().filter(sender=self.request.user)
+        current_query = super().get_queryset().filter(sender=self.request.user).order_by('-pk')
         return current_query
