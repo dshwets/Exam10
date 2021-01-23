@@ -29,6 +29,9 @@
                     <li><a href="{% url 'webapp:sended_message' %}">
                         Отправленные сообщения
                     </a></li>
+                    <li><a href="{% url 'webapp:recived_message' %}">
+                        Входящая сообщения
+                    </a></li>
                 {% endif %}
                 {% block auth_menu %}
                     {% if request.user.is_authenticated %}

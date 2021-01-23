@@ -37,3 +37,15 @@ class SendedMessages(LoginRequiredMixin, ListView):
     def get_queryset(self):
         current_query = super().get_queryset().filter(sender=self.request.user).order_by('-pk')
         return current_query
+
+
+class RecivedMessages(LoginRequiredMixin, ListView):
+    model = Messages
+    template_name = 'recived_msg.html'
+    context_object_name = 'recived_messages'
+    paginate_by = 10
+    paginate_orphans = 4
+
+    def get_queryset(self):
+        current_query = super().get_queryset().filter(reciver=self.request.user).order_by('-pk')
+        return current_query
