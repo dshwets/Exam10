@@ -11,8 +11,10 @@
 
 {% block content %}
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
-    {% if user_obj.profile.avatar %}
+   {% if user_obj.profile.avatar %}
         <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
+    {% else %}
+        <img class="avatar" src="https://i.pinimg.com/originals/e1/3a/73/e13a7327597bc51017d7f84dccda2d47.jpg" width="250" height="250" alt="user picture">
     {% endif %}
     <p>Имя пользователя: {{ user_obj.username }}</p>
     <p>Имя: {{ user_obj.first_name }}</p>
