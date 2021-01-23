@@ -22,10 +22,10 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
             return HttpResponseBadRequest
         else:
             message.save()
-            return redirect('webapp:index')
+            return redirect('webapp:sended_message')
 
     def get_success_url(self):
-        return reverse('webapp:sended_message')
+        return redirect('webapp:sended_message')
 
 
 class SendedMessages(LoginRequiredMixin, ListView):
