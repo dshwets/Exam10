@@ -1,6 +1,7 @@
 from django.urls import path, include
 
 from api.views import FriendsApi
+from webapp.views.MessagesCreateView import MessageCreateView
 
 app_name = 'api'
 

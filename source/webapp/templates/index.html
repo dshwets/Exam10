@@ -20,6 +20,10 @@
                     <a href="{% url 'api:add_to_friends' pk=user.pk%}"><button type="button" class="btn btn-primary">
                         Add to Friends</button></a>
                     {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'webapp:send_message' pk=user.pk%}"><button type="button" class="btn btn-secondary">
+                            Send Message</button></a>
+                        {% endif %}
                 </div>
             {% endfor %}
          {% if is_paginated %}
