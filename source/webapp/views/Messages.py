@@ -23,8 +23,9 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
         else:
             message.save()
             return redirect('webapp:index')
-    # def get_success_url(self):
-    #     return reverse('employees:employee_detail', kwargs={'pk': self.object.pk})
+
+    def get_success_url(self):
+        return reverse('webapp:sended_message')
 
 
 class SendedMessages(LoginRequiredMixin, ListView):
