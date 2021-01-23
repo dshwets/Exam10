@@ -15,6 +15,14 @@ class FriendsApi(APIView):
         if profile == profile_which_will_be_added:
             return Response({"message": "Нельзя добавить себя в друзья"}, status=400)
         else:
-            # slr = ProfileSerializer(profile_which_will_be_added)
             profile.friends.add(profile_which_will_be_added)
             return Response({"message": "Друг был доавлен"}, status=200)
+
+    def delete(self, request, *args, **kwargs):
+        profile_which_will_be_removed = get_object_or_404(Profile, pk=kwargs.get('pk'))
+        profile = self.request.user.profile
+        if profile == profile_which_will_be_removed:
+            return Response({"message": "Нельзя удалить себя из друзей"}, status=400)
+        else:
+            profile.friends.remove(profile_which_will_be_removed)
+            return Response({"message": "Друг был удален"}, status=200)
